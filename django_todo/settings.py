@@ -17,6 +17,7 @@ if os.path.isfile("env.py"):
     import env
 import dj_database_url
 
+development = os.environ.get('DEVELOPMENT', False)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ul+w0p(&es^e)t4)0#g*%^1g%_mn(62_+%@x-yd50o54^t2n_2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = development
 
 ALLOWED_HOSTS = ['kds1977-django-todo-app-a631576ff38a.herokuapp.com']
 
@@ -79,13 +80,6 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # DATABSE
 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#   'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-# }
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
