@@ -34,8 +34,7 @@ DEBUG = development
 
 if development:
     ALLOWED_HOSTS = [
-        
-, ''8000-kristiandsmith-ci-fsf-he-jv3lh2pxqy.us2.codeanyapp.com        'localhost', '8000-kristiandsmith-ci-fsf-he-jv3lh2pxqy.us2.codeanyapp.com']
+        'localhost', '8000-kristiandsmith-ci-fsf-he-jv3lh2pxqy.us2.codeanyapp.com']
 else:
     ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
@@ -86,17 +85,16 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if development:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
-    DATABASES = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
